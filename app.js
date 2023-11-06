@@ -13,6 +13,7 @@ const contract = new web3.eth.Contract(contractABI.abi, contractAddress);
 const publicKey = "0x91CB85A78B595fd8745018Ae1819D5FD8cA603B2"; // replace withe your account/wallet address
 const router = express.Router()
 const { addLiquidity } = require('./contractAPI')
+const PORT= process.env.PORT || 3000
 app.use(express.json())
 const mintToken = async (req, res) => {
     try {
@@ -48,4 +49,4 @@ app.use(router.post("/mint", mintToken))
 app.use(router.post("/add-liquidity", addLiquidityPool))
 app.use(router.get("/balance/:address", balanceOf))
 app.use(router.get("/supply/", totalSupply))
-app.listen(3000, () => console.log("Server started"))
+app.listen(PORT, () => console.log(`Server started on port ${PORT} `))
